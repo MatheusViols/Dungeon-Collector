@@ -77,15 +77,13 @@ def jogador_atingido():
 def jogador_vulneravel():
     jogador.image = 'explorador-resize'
     jogador.vulneravel = True
-    
-
 
 def draw():
     if fim_jogo:
         screen.clear()
         screen.draw.text("GAME OVER", center=(WIDTH/2, HEIGHT/2), fontsize=100, color='white')
         return
-    # screen.fill((200, 100, 0))
+
     mapa.draw(screen)
     screen.draw.text(f"Vidas: {jogador.vidas}", topleft=(10,10), fontsize=30, color='white')
     jogador.draw()
