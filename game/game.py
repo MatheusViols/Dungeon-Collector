@@ -9,7 +9,7 @@ mago = Mago()
 aranha = Aranha()
 
 jogador = Actor('explorador-resize') 
-jogador.velocidade = 2
+jogador.velocidade = 3
 
 def mover_jogador():
     if keyboard.d or keyboard.right:
