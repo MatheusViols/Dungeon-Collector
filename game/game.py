@@ -1,25 +1,45 @@
+from mago import Mago
+from aranha import Aranha
+
 WIDTH=700
 HEIGHT=600
 
-explorador = Actor('explorador-resize')
-explorador.velocidade = 2
+mago = Mago()
+
+aranha = Aranha()
+
+jogador = Actor('explorador-resize') 
+jogador.velocidade = 2
+
+def mover_jogador():
+    if keyboard.d or keyboard.right:
+        jogador.x += jogador.velocidade
+
+    if keyboard.a or keyboard.left:
+        jogador.x -= jogador.velocidade
+
+    if keyboard.w or keyboard.up:
+        jogador.y -= jogador.velocidade
+
+    if keyboard.s or keyboard.down:
+        jogador.y += jogador.velocidade
+
 
 def draw():
     screen.fill((200, 100, 0))
-    explorador.draw()
+    jogador.draw()
+    mago.actor.draw()
+    aranha.actor.draw()
 
 def update():
-    if keyboard.left or keyboard.a:
-        explorador.image = 'explorador-resize-esquerda'
-        explorador.x -= 1 * explorador.velocidade
-    if keyboard.right or keyboard.d:
-        explorador.image = 'explorador-resize'
-        explorador.x += 1 * explorador.velocidade
-    if keyboard.up or keyboard.w: 
-        explorador.y -= 1 * explorador.velocidade
-    if keyboard.down or keyboard.s:
-        explorador.y += 1 * explorador.velocidade
+    mover_jogador()
+    mago.mover()
+    aranha.mover()
 
+
+
+
+    
 
         
 
