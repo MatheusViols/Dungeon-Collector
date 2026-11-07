@@ -1,10 +1,12 @@
+from bau import Bau
+
 class Mapa:
     def __init__(self):
         self.tamanho_tile = 54
         self.imagens = {
                 '.': 'caminho',
                 '#': 'parede',
-                'T': 'tesouro',
+                'T': 'caminho',
                 }
         self.layout = [
                 "##############",
@@ -21,10 +23,22 @@ class Mapa:
                 "##############",
                 ]
 
+        self.baus = []
+        self.criar_baus()
+
+    def criar_baus(self):
+        for indice_linha, linha in enumerate(self.layout):
+            for indice_coluna, tile in enumerate(linha):
+                centro = (indice_coluna * self.tamanho_tile + self.tamanho_tile // 2, indice_linha * self.tamanho_tile + self.tamanho_tile // 2)
+                if tile == "T":
+                    self.baus.append(Bau(centro))
+
+
     def draw(self, screen):
         for indice_linha, linha in enumerate(self.layout):
             for indice_coluna, tile in enumerate(linha):
-                screen.blit(self.imagens[tile], (indice_coluna * self.tamanho_tile, indice_linha * self.tamanho_tile))
+                posicao = (indice_coluna * self.tamanho_tile, indice_linha * self.tamanho_tile)
+                screen.blit(self.imagens[tile], posicao)
 
     def andavel(self, novo_x, novo_y, WIDTH, HEIGHT):
 

@@ -18,6 +18,7 @@ jogador.vidas = 3
 jogador.vulneravel = True
 jogador.olhando_direita = True
 jogador.em_movimento = False
+jogador.contador_baus = 0
 
 def atualizar_imagem_jogador():
     if not jogador.vulneravel:
@@ -78,6 +79,13 @@ def jogador_vulneravel():
     jogador.image = 'explorador-resize'
     jogador.vulneravel = True
 
+def coletar_baus():
+    for bau in mapa.baus:
+        if not bau.aberto and jogador.colliderect(bau.actor):
+            bau.abrir()
+            jogador.contador_baus += 1
+
+
 def draw():
     if fim_jogo:
         screen.clear()
@@ -86,21 +94,19 @@ def draw():
 
     mapa.draw(screen)
     screen.draw.text(f"Vidas: {jogador.vidas}", topleft=(10,10), fontsize=30, color='white')
+    screen.draw.text(f"Baus: {jogador.contador_baus}", topleft=(10,50), fontsize=30, color='white')
     jogador.draw()
+    for bau in mapa.baus:
+        bau.actor.draw()
 
 def update():
     if fim_jogo: 
         return
 
     mover_jogador()
+    coletar_baus()
     jogador_atingido()
     atualizar_imagem_jogador()
 
-
-
-
-    
-
-        
 
     
