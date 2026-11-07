@@ -4,7 +4,7 @@ class Aranha():
 
     def __init__(self):
         self.actor = Actor('aranha', (400, 100))
-        self.velocidade = 2.3
+        self.velocidade = 1.5 
         self.limite_cima = 50
         self.limite_baixo = 150
 
