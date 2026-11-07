@@ -13,11 +13,11 @@ mago = Mago()
 
 aranha = Aranha()
 
-jogador = Actor('explorador-resize') 
+jogador = Actor('explorador-resize', (75,75)) 
 jogador.vidas = 3
-jogador.velocidade = 3
 jogador.vulneravel = True
 jogador.olhando_direita = True
+jogador.em_movimento = False
 
 def atualizar_imagem_jogador():
     if not jogador.vulneravel:
@@ -28,20 +28,37 @@ def atualizar_imagem_jogador():
         jogador.image = 'explorador-resize-esquerda'
 
 
+def parar_movimento():
+    jogador.em_movimento = False
+
 def mover_jogador():
+    if jogador.em_movimento:
+        return
+
+    direcao_x, direcao_y = 0, 0
+
     if keyboard.d or keyboard.right:
         jogador.olhando_direita = True
-        jogador.x += jogador.velocidade
+        direcao_x = 1
 
     if keyboard.a or keyboard.left:
         jogador.olhando_direita = False
-        jogador.x -= jogador.velocidade
+        direcao_x = -1
 
     if keyboard.w or keyboard.up:
-        jogador.y -= jogador.velocidade
+        direcao_y = -1
 
     if keyboard.s or keyboard.down:
-        jogador.y += jogador.velocidade
+        direcao_y = 1
+
+    novo_x = jogador.x + (direcao_x * mapa.tamanho_tile)
+    novo_y = jogador.y + (direcao_y * mapa.tamanho_tile) 
+
+    if mapa.andavel(novo_x, novo_y, WIDTH, HEIGHT):
+        jogador.em_movimento = True
+        animate(jogador, pos=(novo_x, novo_y), duration=0.25, tween="linear", on_finished=parar_movimento)
+
+
 
 def jogador_atingido():
     global fim_jogo
