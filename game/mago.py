@@ -11,8 +11,13 @@ class Mago():
     def mover(self):
         self.actor.x += self.velocidade
 
-        if self.actor.x <= self.limite_esquerda or self.actor.x >= self.limite_direita:
-            self.velocidade = -self.velocidade
+        if self.actor.x <= self.limite_esquerda:
+            self.actor.image = 'mago-direita'
+            self.velocidade = abs(self.velocidade)
+        elif self.actor.x >= self.limite_direita:
+            self.actor.image = 'mago-esquerda'
+            self.velocidade = -abs(self.velocidade)
+
 
         
 
