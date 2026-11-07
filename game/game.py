@@ -13,9 +13,11 @@ jogador.velocidade = 2
 
 def mover_jogador():
     if keyboard.d or keyboard.right:
+        jogador.image = 'explorador-resize'
         jogador.x += jogador.velocidade
 
     if keyboard.a or keyboard.left:
+        jogador.image = 'explorador-resize-esquerda'
         jogador.x -= jogador.velocidade
 
     if keyboard.w or keyboard.up:
