@@ -1,10 +1,13 @@
 from mago import Mago
 from aranha import Aranha
+from mapa import Mapa
 
-WIDTH=700
-HEIGHT=600
+WIDTH=756
+HEIGHT=648
 
 fim_jogo = False
+
+mapa = Mapa()
 
 mago = Mago()
 
@@ -65,19 +68,16 @@ def draw():
         screen.clear()
         screen.draw.text("GAME OVER", center=(WIDTH/2, HEIGHT/2), fontsize=100, color='white')
         return
-    screen.fill((200, 100, 0))
+    # screen.fill((200, 100, 0))
+    mapa.draw(screen)
     screen.draw.text(f"Vidas: {jogador.vidas}", topleft=(10,10), fontsize=30, color='white')
     jogador.draw()
-    mago.actor.draw()
-    aranha.actor.draw()
 
 def update():
     if fim_jogo: 
         return
 
     mover_jogador()
-    mago.mover()
-    aranha.mover()
     jogador_atingido()
     atualizar_imagem_jogador()
 
