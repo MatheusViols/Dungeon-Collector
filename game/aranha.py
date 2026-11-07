@@ -3,10 +3,10 @@ from pgzero.actor import Actor
 class Aranha():
 
     def __init__(self):
-        self.actor = Actor('aranha', (400, 100))
+        self.actor = Actor('aranha', (351, 81))
         self.velocidade = 1.5 
-        self.limite_cima = 50
-        self.limite_baixo = 150
+        self.limite_cima = 81
+        self.limite_baixo = 189
 
     def mover(self):
         self.actor.y += self.velocidade

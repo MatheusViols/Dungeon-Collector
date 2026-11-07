@@ -96,6 +96,8 @@ def draw():
     screen.draw.text(f"Vidas: {jogador.vidas}", topleft=(10,10), fontsize=30, color='white')
     screen.draw.text(f"Baus: {jogador.contador_baus}", topleft=(10,50), fontsize=30, color='white')
     jogador.draw()
+    mago.actor.draw()
+    aranha.actor.draw()
     for bau in mapa.baus:
         bau.actor.draw()
 
@@ -104,6 +106,8 @@ def update():
         return
 
     mover_jogador()
+    mago.mover()
+    aranha.mover()
     coletar_baus()
     jogador_atingido()
     atualizar_imagem_jogador()

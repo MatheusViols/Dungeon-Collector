@@ -2,10 +2,10 @@ from pgzero.actor import Actor
 
 class Mago():
     def __init__(self):
-        self.actor = Actor('mago-direita', (200, 300))
-        self.velocidade = 2
-        self.limite_direita = 300
-        self.limite_esquerda = 100
+        self.actor = Actor('mago-direita', (675, 405))
+        self.velocidade = -2
+        self.limite_direita = 675
+        self.limite_esquerda = 351
 
 
     def mover(self):
