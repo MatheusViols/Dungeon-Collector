@@ -3,7 +3,7 @@ from pgzero.animation import animate
 
 class Jogador():
     def __init__(self, mapa):
-        self.actor = Actor('explorador-resize', (75, 75))
+        self.actor = Actor('explorador-direita', (75, 75))
         self.vidas = 3
         self.vulneravel = True
         self.olhando_direita = True
@@ -32,9 +32,9 @@ class Jogador():
         if not self.vulneravel:
             self.actor.image = 'explorador-dano'
         elif self.olhando_direita:
-            self.actor.image = 'explorador-resize'
+            self.actor.image = 'explorador-direita'
         else:
-            self.actor.image = 'explorador-resize-esquerda'
+            self.actor.image = 'explorador-esquerda'
 
     def parar_movimento(self):
         self.em_movimento = False
