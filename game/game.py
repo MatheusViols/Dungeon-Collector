@@ -5,6 +5,7 @@ from mapa import Mapa
 WIDTH=756
 HEIGHT=648
 
+ganhou_jogo = False
 fim_jogo = False
 TEMPO_INICIAL = 30
 tempo_restante = TEMPO_INICIAL
@@ -87,11 +88,20 @@ def coletar_baus():
             bau.abrir()
             jogador.contador_baus += 1
 
+def contar_baus():
+    global ganhou_jogo
+
+    if jogador.contador_baus == len(mapa.baus):
+        ganhou_jogo = True
 
 def draw():
-    if fim_jogo:
+    if ganhou_jogo:
         screen.clear()
-        screen.draw.text("GAME OVER", center=(WIDTH/2, HEIGHT/2), fontsize=100, color='white')
+        screen.draw.text("DUNGEON EXPLORADA!", center=(WIDTH/2, HEIGHT/2), fontsize=80, color='white')
+        return
+    elif fim_jogo:
+        screen.clear()
+        screen.draw.text("GAME OVER", center=(WIDTH/2, HEIGHT/2), fontsize=80, color='white')
         return
 
     mapa.draw(screen)
@@ -108,7 +118,9 @@ def draw():
 def update(dt):
     global tempo_restante, fim_jogo
 
-    if fim_jogo: 
+    if ganhou_jogo:
+        return
+    elif fim_jogo: 
         return
 
     tempo_restante -= dt 
@@ -122,6 +134,10 @@ def update(dt):
     coletar_baus()
     jogador_atingido()
     atualizar_imagem_jogador()
+
+    contar_baus()
+
+
 
 
     
