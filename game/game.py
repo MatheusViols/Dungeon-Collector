@@ -19,8 +19,18 @@ mago = Mago()
 
 aranha = Aranha()
 
+def reiniciar_jogo():
+    global fim_jogo, ganhou_jogo, tempo_restante, mapa, jogador, mago, aranha
 
+    ganhou_jogo = False
+    fim_jogo = False
+    tempo_restante = 30
 
+    mapa = Mapa()
+    jogador = Jogador(mapa)
+    mago = Mago()
+    aranha = Aranha()
+    
 def contar_baus():
     global ganhou_jogo
 
@@ -34,13 +44,13 @@ def contar_vidas():
         fim_jogo = True
 
 def draw():
-    if ganhou_jogo:
+    if ganhou_jogo or fim_jogo:
+        texto_personalizado = "GAME OVER" if fim_jogo else "DUNGEON EXPLORADA!"
+        mensagem = f"{texto_personalizado}\nAperte R para reiniciar"
+
         screen.clear()
-        screen.draw.text("DUNGEON EXPLORADA!", center=(WIDTH/2, HEIGHT/2), fontsize=80, color='white')
-        return
-    elif fim_jogo:
-        screen.clear()
-        screen.draw.text("GAME OVER", center=(WIDTH/2, HEIGHT/2), fontsize=80, color='white')
+        screen.draw.text(mensagem, center=(WIDTH/2, HEIGHT/2), fontsize=50, color='white')
+
         return
 
     mapa.draw(screen)
@@ -101,5 +111,10 @@ def mover_jogador():
 
     jogador.mover(direcao_x, direcao_y)
 
+def on_key_down(key):
+    if key == keys.R:
+        reiniciar_jogo()
+        print(ganhou_jogo, fim_jogo)
+        
 
     
