@@ -95,14 +95,15 @@ def draw():
         return
 
     mapa.draw(screen)
+    for bau in mapa.baus:
+        bau.actor.draw()
     screen.draw.text(f"VIDAS: {jogador.vidas}", midleft=(15,27), fontsize=30, color='white')
     screen.draw.text(f"BAUS: {jogador.contador_baus}", center=(378,27), fontsize=30, color='white')
     screen.draw.text(f"TEMPO: {int(tempo_restante)}", midright=(741,27), fontsize=30, color='white')
+
     jogador.draw()
     mago.actor.draw()
     aranha.actor.draw()
-    for bau in mapa.baus:
-        bau.actor.draw()
 
 def update(dt):
     global tempo_restante, fim_jogo
