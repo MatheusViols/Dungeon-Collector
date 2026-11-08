@@ -16,7 +16,7 @@ class Jogador():
         if self.em_movimento:
             return
 
-        if direcao_x > 0:
+        if direcao_x >= 0:
             self.olhando_direita = True
         else:
             self.olhando_direita = False
