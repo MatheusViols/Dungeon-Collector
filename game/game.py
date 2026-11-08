@@ -59,7 +59,7 @@ def mover_jogador():
 
     if mapa.andavel(novo_x, novo_y, WIDTH, HEIGHT):
         jogador.em_movimento = True
-        animate(jogador, pos=(novo_x, novo_y), duration=0.25, tween="linear", on_finished=parar_movimento)
+        animate(jogador, pos=(novo_x, novo_y), duration=0.30, tween="linear", on_finished=parar_movimento)
 
 
 
