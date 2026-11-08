@@ -19,6 +19,8 @@ mago = Mago()
 
 aranha = Aranha()
 
+music.play('trilha')
+
 def reiniciar_jogo():
     global fim_jogo, ganhou_jogo, tempo_restante, mapa, jogador, mago, aranha
 
@@ -114,7 +116,6 @@ def mover_jogador():
 def on_key_down(key):
     if key == keys.R:
         reiniciar_jogo()
-        print(ganhou_jogo, fim_jogo)
         
 
     
