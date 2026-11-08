@@ -6,6 +6,8 @@ WIDTH=756
 HEIGHT=648
 
 fim_jogo = False
+TEMPO_INICIAL = 30
+tempo_restante = TEMPO_INICIAL
 
 mapa = Mapa()
 
@@ -93,16 +95,24 @@ def draw():
         return
 
     mapa.draw(screen)
-    screen.draw.text(f"Vidas: {jogador.vidas}", topleft=(10,10), fontsize=30, color='white')
-    screen.draw.text(f"Baus: {jogador.contador_baus}", topleft=(10,50), fontsize=30, color='white')
+    screen.draw.text(f"VIDAS: {jogador.vidas}", midleft=(15,27), fontsize=30, color='white')
+    screen.draw.text(f"BAUS: {jogador.contador_baus}", center=(378,27), fontsize=30, color='white')
+    screen.draw.text(f"TEMPO: {int(tempo_restante)}", midright=(741,27), fontsize=30, color='white')
     jogador.draw()
     mago.actor.draw()
     aranha.actor.draw()
     for bau in mapa.baus:
         bau.actor.draw()
 
-def update():
+def update(dt):
+    global tempo_restante, fim_jogo
+
     if fim_jogo: 
+        return
+
+    tempo_restante -= dt 
+    if tempo_restante <= 0:
+        fim_jogo = True
         return
 
     mover_jogador()
