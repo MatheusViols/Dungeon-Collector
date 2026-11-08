@@ -5,7 +5,7 @@ class Mago():
         self.actor = Actor('mago-direita', (675, 405))
         self.velocidade = -2
         self.limite_direita = 675
-        self.limite_esquerda = 351
+        self.limite_esquerda = 81
 
 
     def mover(self):
