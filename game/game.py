@@ -86,7 +86,7 @@ def update(dt):
 
     if jogador.foi_atingido((mago, aranha)):
         jogador.levar_dano()
-        clock.schedule(jogador.ficar_vulneravel, 0.3)
+        clock.schedule(jogador.ficar_vulneravel, 0.4)
 
     jogador.atualizar_imagem()
 
