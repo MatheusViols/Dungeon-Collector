@@ -40,7 +40,7 @@ class Mapa:
                 posicao = (indice_coluna * self.tamanho_tile, indice_linha * self.tamanho_tile)
                 screen.blit(self.imagens[tile], posicao)
 
-    def andavel(self, novo_x, novo_y, WIDTH, HEIGHT):
+    def andavel(self, novo_x, novo_y):
 
         indice_linha = int(novo_y // self.tamanho_tile)
         indice_coluna = int(novo_x // self.tamanho_tile)
